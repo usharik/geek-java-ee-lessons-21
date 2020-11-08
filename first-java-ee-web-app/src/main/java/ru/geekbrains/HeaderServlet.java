@@ -14,6 +14,9 @@ public class HeaderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().println("<link rel='stylesheet' href='" + req.getContextPath() + "/style.css'>");
 
+        String header = (String) req.getAttribute("header");
+
+        resp.getWriter().println("<h1>" + header + "</h1>");
         resp.getWriter().println("<ul>");
         resp.getWriter().println("<li><a href='"+ req.getContextPath() + "/first_http_servlet'>Home</a></li>");
         resp.getWriter().println("<li><a href='#news'>News</a></li>");

@@ -31,6 +31,8 @@ public class FirstHttpServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("Some-Header", "Some value");
 
+        req.setAttribute("header", "First Http Servlet");
+
         getServletContext().getRequestDispatcher("/page_header").include(req, resp);
 
         resp.getWriter().println("<h1>Привет от сервлета!</h1>");

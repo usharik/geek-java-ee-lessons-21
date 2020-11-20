@@ -9,6 +9,8 @@
 
 <h:body>
 
+    <f:event listener="#{todoController.preloadData}" type="preRenderView"/>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">ToDo</a>
 
@@ -49,6 +51,10 @@
                         <h:column>
                             <f:facet name="header">Target date</f:facet>
                             #{todo.targetDate}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            #{empty todo.toDoCategory ? "no category" : todo.toDoCategory.name}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>

@@ -54,7 +54,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Category</f:facet>
-                            #{empty todo.toDoCategory ? "no category" : todo.toDoCategory.name}
+                            #{empty todo.categoryName ? "no category" : todo.categoryName}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>
@@ -63,6 +63,10 @@
                                              action="#{todoController.editTodo(todo)}"/>
                             <h:commandButton value="Delete" styleClass="btn btn-danger"
                                              action="#{todoController.deleteTodo(todo)}">
+                                <f:ajax event="click" render="toDoForm"/>
+                            </h:commandButton>
+                            <h:commandButton value="Delete" styleClass="btn btn-success"
+                                             action="#{cartController.add(todo)}">
                                 <f:ajax event="click" render="toDoForm"/>
                             </h:commandButton>
 

@@ -1,43 +1,25 @@
 package ru.geekbrains.persist;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import ru.geekbrains.service.ToDoRepr;
+
+import javax.ejb.Local;
+import javax.ejb.TransactionAttribute;
 import java.util.List;
 
-@Named
-@ApplicationScoped
-public class ToDoRepository {
+@Local
+public interface ToDoRepository {
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager em;
+    void insert(ToDo toDo);
 
-    @Transactional
-    public void insert(ToDo toDo) {
-        em.persist(toDo);
-    }
+    void update(ToDo toDo);
 
-    @Transactional
-    public void update(ToDo toDo) {
-        em.merge(toDo);
-    }
+    void delete(long id);
 
-    @Transactional
-    public void delete(long id) {
-        ToDo toDo = em.find(ToDo.class, id);
-        if (toDo != null) {
-            em.remove(toDo);
-        }
-    }
+    ToDo findById(long id);
 
-    public ToDo findById(long id) {
-        return em.find(ToDo.class, id);
-    }
+    List<ToDo> findAll();
 
-    public List<ToDo> findAll() {
-        return em.createQuery("from ToDo t", ToDo.class)
-                .getResultList();
-    }
+    ToDoRepr findToDoReprById(long id);
+
+    List<ToDoRepr> findAllToDoRepr();
 }

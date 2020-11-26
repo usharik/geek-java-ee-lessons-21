@@ -1,8 +1,6 @@
 package ru.geekbrains.persist;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -13,11 +11,9 @@ public class ToDo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     @Column(nullable = false)
     private String description;
 
-    @NotNull
     @Column(nullable = false)
     private LocalDate targetDate;
 
@@ -27,10 +23,11 @@ public class ToDo {
     public ToDo() {
     }
 
-    public ToDo(Long id, String description, LocalDate targetDate) {
+    public ToDo(Long id, String description, LocalDate targetDate, ToDoCategory toDoCategory) {
         this.id = id;
         this.description = description;
         this.targetDate = targetDate;
+        this.toDoCategory = toDoCategory;
     }
 
     public Long getId() {

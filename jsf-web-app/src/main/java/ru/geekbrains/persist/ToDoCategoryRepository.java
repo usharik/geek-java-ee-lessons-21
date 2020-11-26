@@ -1,24 +1,12 @@
 package ru.geekbrains.persist;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.ejb.Local;
 import java.util.List;
 
-@Named
-@ApplicationScoped
-public class ToDoCategoryRepository {
+@Local
+public interface ToDoCategoryRepository {
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager em;
+    ToDoCategory findById(long id);
 
-    public ToDoCategory findById(long id) {
-        return em.find(ToDoCategory.class, id);
-    }
-
-    public List<ToDoCategory> findAll() {
-        return em.createQuery("from ToDoCategory t", ToDoCategory.class)
-                .getResultList();
-    }
+    List<ToDoCategory> findAll();
 }

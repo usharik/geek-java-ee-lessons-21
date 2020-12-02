@@ -1,0 +1,55 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:include src="WEB-INF/views/head.xhtml">
+    <ui:param name="title" value="ToDo List"/>
+</ui:include>
+
+<h:body>
+
+    <ui:include src="WEB-INF/views/navigation.xhtml">
+        <ui:param name="pageName" value="Cart"/>
+    </ui:include>
+
+    <div class="container">
+        <div class="row py-2">
+            <div class="col-12">
+
+                <h:form id="cartForm">
+                    <h:dataTable value="#{cartController.allItems}" var="todo"
+                                 styleClass="table table-bordered my-2">
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{todo.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Description</f:facet>
+                            #{todo.description}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Target date</f:facet>
+                            #{todo.targetDate}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            #{empty todo.categoryName ? "no category" : todo.categoryName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+
+                            <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                             action="#{cartController.delete(todo)}">
+                                <f:ajax event="click" render="cartForm"/>
+                            </h:commandButton>
+
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>

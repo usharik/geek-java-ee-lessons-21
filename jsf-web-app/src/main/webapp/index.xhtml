@@ -11,22 +11,9 @@
 
     <f:event listener="#{todoController.preloadData}" type="preRenderView"/>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">ToDo</a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">List</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <ui:include src="WEB-INF/views/navigation.xhtml">
+        <ui:param name="pageName" value="List"/>
+    </ui:include>
 
     <div class="container">
         <div class="row py-2">
@@ -65,7 +52,7 @@
                                              action="#{todoController.deleteTodo(todo)}">
                                 <f:ajax event="click" render="toDoForm"/>
                             </h:commandButton>
-                            <h:commandButton value="Delete" styleClass="btn btn-success"
+                            <h:commandButton value="Add to cart" styleClass="btn btn-success"
                                              action="#{cartController.add(todo)}">
                                 <f:ajax event="click" render="toDoForm"/>
                             </h:commandButton>

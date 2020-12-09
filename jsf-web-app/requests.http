@@ -1,0 +1,33 @@
+GET http://localhost:8080/jsf-web-app/api/v1/todo/all
+
+###
+
+GET http://localhost:8080/jsf-web-app/api/v1/todo/4
+
+###
+
+POST http://localhost:8080/jsf-web-app/api/v1/todo
+Content-Type: application/json
+
+{
+  "categoryId": 1,
+  "categoryName": "Homework",
+  "description": "Jax RS lesson homework",
+  "targetDate": "2020-12-15"
+}
+
+###
+
+PUT http://localhost:8080/jsf-web-app/api/v1/todo
+Content-Type: application/json
+
+{
+  "id": 19,
+  "categoryId": 2,
+  "description": "Jax RS lesson homework",
+  "targetDate": "2020-12-15"
+}
+
+###
+
+DELETE http://localhost:8080/jsf-web-app/api/v1/todo/4

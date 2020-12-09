@@ -13,6 +13,8 @@
         <module>first-java-ee-web-app</module>
         <module>jsf-web-app</module>
         <module>ejb-client</module>
+        <module>ws-client</module>
+        <module>rest-client</module>
     </modules>
 
 

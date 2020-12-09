@@ -20,6 +20,18 @@
             <li class="nav-item #{pageName == 'Cart' ? 'active' : ''}">
                 <h:link styleClass="nav-link" value="Cart" outcome="cart"/>
             </li>
+            <li class="nav-item #{pageName == 'User' ? 'active' : ''}">
+                <h:link rendered="#{request.isUserInRole('ADMIN')}" styleClass="nav-link" value="Users" outcome="admin/user"/>
+            </li>
+            <li class="nav-item">
+                <h:form rendered="#{request.userPrincipal != null}">
+                    <h:commandButton action="#{todoController.logout()}" value="Logout #{request.userPrincipal.name}"/>
+                </h:form>
+                <h:link styleClass="nav-link"
+                        rendered="#{request.userPrincipal == null}"
+                        value="Login"
+                        outcome="login"/>
+            </li>
         </ul>
     </div>
 </nav>
